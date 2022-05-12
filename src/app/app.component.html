@@ -4,8 +4,8 @@
     </div>
     <ul class="navigation">
         <li class="parent"><a class="link" href="/">Home</a></li>
-        <li id="sign-out" class="parent" hidden="true"><a class="link" href="#">Sign out</a></li>
-        <li id="sign-in" class="parent" hidden="true"><a class="link" href="/login">Sign in</a></li>
+        <li id="sign-out" class="parent" [hidden]="!isLogged"><a class="link" href="#">Sign out</a></li>
+        <li id="sign-in" class="parent" [hidden]="isLogged"><a class="link" href="/login">Sign in</a></li>
     </ul>
 </nav>
 
