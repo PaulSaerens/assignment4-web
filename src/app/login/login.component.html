@@ -1,1 +1,15 @@
-<p>login works!</p>
+<div class="login-form">
+    <h1>Login</h1>
+    <div class="content">
+        <div class="input-field">
+            <input type="email" placeholder="Email" autocomplete="nope" [(ngModel)]="usr">
+        </div>
+        <div class="input-field">
+            <input type="password" placeholder="Password" autocomplete="new-password" [(ngModel)]="pwd">
+        </div>
+    </div>
+    <div class="action">
+        <button (click)="register()">Register</button>
+        <button (click)="login()">Sign in</button>
+    </div>
+</div>

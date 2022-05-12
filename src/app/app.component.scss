@@ -1,0 +1,56 @@
+/* --- NAVBAR ---  */
+.navigationWrapper {
+    padding: 20px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #222;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+    color: white;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.logoWrapper {
+    display: flex;
+}
+
+#logo {
+    margin-left: 100px;
+    height: 100px;
+    padding-left: 4px;
+    color: white;
+}
+
+.navigation {
+    display: flex;
+    list-style-type: none;
+    margin-right: 100px;
+}
+
+.navigation li {
+    opacity: 1;
+    list-style-type: none;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.parent {
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.parent .link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+.parent .link:hover {
+    color: #ea4f4c;
+}
