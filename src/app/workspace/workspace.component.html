@@ -3,9 +3,14 @@
         <h2>{{workspace.name}}</h2>
         <button class="delete-btn" (click)="delWorkspace()">Delete</button>
     </div>
-    <!-- <div class="task" *ngFor="let task of workspace.collaborators>
-        <app-task [task]="task" [workspace]="workspace._id"></app-task>
-    </div> -->
+    <div class="add-collaborator">
+        <input class="new-collab" type="text" placeholder="Name of the collaborator" autocomplete="nope" [(ngModel)]="newCollab">
+        <button (click)="addCollab()" class="small-check-btn"> ADD </button>
+    </div>
+    <div class="list-collaborators" *ngFor="let usr of collabs">
+        <p>{{usr.name}}</p>
+        <button class="small-delete-btn" (click)="delCollab(usr.id)">Delete</button>
+    </div>
 
     <div class="task" *ngFor="let task of workspace.tasks">
         <app-task [task]="task" [workspace]="workspace._id"></app-task>

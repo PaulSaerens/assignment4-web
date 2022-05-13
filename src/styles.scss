@@ -6,7 +6,8 @@
 }
 
 .delete-btn:hover,
-.check-btn:hover {
+.check-btn:hover,
+.small-check-btn:hover {
     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
     transform: translateY(-0.25em);
 }
@@ -22,20 +23,35 @@
     padding: 1em 2em;
 }
 
-.delete-btn {
+.small-check-btn,
+.small-delete-btn {
+    transition: 0.25s;
+    background: none;
+    border: 2px solid;
+    font: inherit;
+    line-height: 1;
+    margin: 0.25em;
+    padding: 0.5em 1em;
+}
+
+.delete-btn,
+.small-delete-btn {
     color: #ff7f82;
 }
 
-.check-btn {
+.check-btn,
+.small-check-btn {
     color: #00be39
 }
 
-.check-btn:hover {
+.check-btn:hover,
+.small-check-btn:hover {
     border-color: var(--hover);
     color: #08d746;
 }
 
-.delete-btn:hover {
+.delete-btn:hover,
+.small-delete-btn:hover {
     border-color: var(--hover);
     color: #da6264;
 }

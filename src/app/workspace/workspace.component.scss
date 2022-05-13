@@ -5,3 +5,22 @@
     justify-content: space-between;
     margin: 20px 0;
 }
+
+.add-collaborator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.new-collab {
+    height: 35px;
+    width: 200px;
+    text-indent: 20px;
+    margin-right: 20px;
+}
+
+.list-collaborators {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
