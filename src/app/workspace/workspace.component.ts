@@ -13,14 +13,20 @@ export class WorkspaceComponent implements OnInit {
 
     public newCollab: string = ''
     public collabs: any = []
+    public isHidden: boolean = false;
 
     private usr: any = []
 
     constructor(private http: HttpClient, private cookieService: CookieService) { }
 
     ngOnInit(): void {
+        this.isHidden = false
         this.getAllUsers()
         this.getUsers()
+    }
+
+    hideCollaborators() {
+        this.isHidden = !this.isHidden
     }
 
     getAllUsers() {

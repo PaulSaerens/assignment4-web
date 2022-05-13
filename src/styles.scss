@@ -5,6 +5,7 @@
     padding: 0;
 }
 
+.gen-btn:hover,
 .delete-btn:hover,
 .check-btn:hover,
 .small-check-btn:hover {
@@ -12,6 +13,7 @@
     transform: translateY(-0.25em);
 }
 
+.gen-btn,
 .delete-btn,
 .check-btn {
     transition: 0.25s;
@@ -32,6 +34,14 @@
     line-height: 1;
     margin: 0.25em;
     padding: 0.5em 1em;
+}
+
+.gen-btn {
+    color: #00151a;
+}
+
+.gen-btn:hover {
+    color: #002e37;
 }
 
 .delete-btn,

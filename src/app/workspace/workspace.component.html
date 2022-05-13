@@ -3,28 +3,21 @@
         <h2>{{workspace.name}}</h2>
         <button class="delete-btn" (click)="delWorkspace()">Delete</button>
     </div>
-    <div class="add-collaborator">
-        <input class="new-collab" type="text" placeholder="Name of the collaborator" autocomplete="nope" [(ngModel)]="newCollab">
-        <button (click)="addCollab()" class="small-check-btn"> ADD </button>
+    <div class="first-line">
+        <div class="add-collaborator">
+            <input class="new-collab" type="text" placeholder="Name of the collaborator" autocomplete="nope" [(ngModel)]="newCollab">
+            <button (click)="addCollab()" class="small-check-btn"> ADD </button>
+        </div>
+        <button class="gen-btn" (click)="hideCollaborators()">Hide collaborators</button>
     </div>
-    <div class="list-collaborators" *ngFor="let usr of collabs">
-        <p>{{usr.name}}</p>
-        <button class="small-delete-btn" (click)="delCollab(usr.id)">Delete</button>
+    <div [hidden]="isHidden">
+        <div class="list-collaborators" *ngFor="let usr of collabs">
+            <p>{{usr.name}}</p>
+            <button class="small-delete-btn" (click)="delCollab(usr.id)">Delete</button>
+        </div>
     </div>
 
     <div class="task" *ngFor="let task of workspace.tasks">
         <app-task [task]="task" [workspace]="workspace._id"></app-task>
     </div>
 </div>
-
-<!--
-                "_id": "62756a465d55fd76017b7e8e",
-                "name": "Shared Workspace",
-                "description": "This is a shared workspace",
-                "createdBy": "62755f12d840778792110aaf",
-                "collaborators": [],
-                "tasks": ["627bdf0d63e7123abd2931e0", "627be3cc14f30f11a32ab855", "627be3d114f30f11a32ab85c"],
-                "createdAt": "2022-05-06T18:34:46.540Z",
-                "updatedAt": "2022-05-09T17:41:19.418Z",
-                "__v": 10
--->
