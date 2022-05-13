@@ -1,14 +1,16 @@
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
     public pwd: string = ''
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
     private cookieId: String = '';
 
 
-    constructor(private http: HttpClient, private cookieService: CookieService) { }
+    constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) { }
 
 
 
@@ -29,7 +31,8 @@ export class LoginComponent implements OnInit {
 
     login() {
         const options = {
-            params: new HttpParams()
+            params: new HttpParams(),
+            headers: new HttpHeaders({ "Content-Type": "application/json" }),
         }
         const body = {
             "username": this.usr,
@@ -37,13 +40,36 @@ export class LoginComponent implements OnInit {
         }
         this.http
             .post("https://tasklist-griffith.herokuapp.com/users/login", body, options)
-            .subscribe(res => console.log(res));
-        console.log()
+            .subscribe(res => {
+                const r = res as any
+
+                this.cookieService.set('token', "Bearer " + r.content.user.token)
+                this.cookieService.set('id', r.content.user._id)
+                this.cookieService.set('user', r.content.user.username)
+                this.router.navigate(['list'])
+            });
         console.log("login")
     }
 
     register() {
-        console.log("register")
+        const options = {
+            params: new HttpParams(),
+            headers: new HttpHeaders({ "Content-Type": "application/json" }),
+        }
+        const body = {
+            "username": this.usr,
+            "password": this.pwd
+        }
+        this.http
+            .post("https://tasklist-griffith.herokuapp.com/users/register", body, options)
+            .subscribe(res => {
+                const r = res as any
+
+                this.cookieService.set('token', "Bearer " + r.content.user.token)
+                this.cookieService.set('id', r.content.user._id)
+                this.cookieService.set('user', r.content.user.username)
+                this.router.navigate(['list'])
+            });
     }
 
 }

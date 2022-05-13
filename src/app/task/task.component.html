@@ -1,1 +1,21 @@
-<p>task works!</p>
+<div  class="task-container">
+    <label>
+        <input type="checkbox" [(ngModel)]="data.completed" (change)="check()">
+    </label>
+    <div class="task-content">
+        <div class="task-titel">
+            <span>{{data.priority}}</span>
+            <h3>{{data.name}}</h3>
+        </div>
+        <p>{{data.description}}</p>
+    </div>
+</div>
+<!--
+    {
+        "name": "3",
+        "description": "3",
+        "assignedTo": ["62755f25d840778792110ab4", "62755f12d840778792110aaf"],
+        "completed": false,
+        "priority": "MEDIUM"
+    }
+-->

@@ -1,1 +1,22 @@
-<p>workspace-list works!</p>
+<div class="workspaces-container">
+    <div class="input-field">
+        <input class="new-workspace" type="text" placeholder="Todo list" autocomplete="nope" [(ngModel)]="newName">
+        <button (click)="newWorkspace()" class="check-btn"> New workspace </button>
+    </div>
+    <div class="workspace-container" *ngFor="let workspace of workspaces">
+        <p>{{workspace.description}}</p>
+        <app-workspace [workspace]="workspace"></app-workspace>
+    </div>
+</div>
+
+<!--
+                "_id": "62756a465d55fd76017b7e8e",
+                "name": "Shared Workspace",
+                "description": "This is a shared workspace",
+                "createdBy": "62755f12d840778792110aaf",
+                "collaborators": [],
+                "tasks": [ "627bdf0d63e7123abd2931e0", "627be3cc14f30f11a32ab855", "627be3d114f30f11a32ab85c"],
+                "createdAt": "2022-05-06T18:34:46.540Z",
+                "updatedAt": "2022-05-09T17:41:19.418Z",
+                "__v": 10
+ -->

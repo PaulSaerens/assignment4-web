@@ -14,9 +14,9 @@ import { CookieService } from 'ngx-cookie-service';
 @NgModule({
     declarations: [
         AppComponent,
+        TaskComponent,
         LoginComponent,
         WorkspaceComponent,
-        TaskComponent,
         WorkspaceListComponent
     ],
     imports: [

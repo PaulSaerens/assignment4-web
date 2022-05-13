@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-workspace',
-  templateUrl: './workspace.component.html',
-  styleUrls: ['./workspace.component.scss']
+    selector: 'app-workspace',
+    templateUrl: './workspace.component.html',
+    styleUrls: ['./workspace.component.scss']
 })
 export class WorkspaceComponent implements OnInit {
 
-  constructor() { }
+    @Input() workspace: any;
 
-  ngOnInit(): void {
-  }
+    constructor() { }
+
+    ngOnInit(): void {
+    }
+
+
+    delWorkspace() {
+        // todo
+        alert(this.workspace._id)
+    }
 
 }
