@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -44,16 +44,17 @@ export class AppComponent implements OnInit {
                 Authorization: this.cookieService.get('token')
             }),
         }
+        const body = {}
         this.http
-            .post("https://tasklist-griffith.herokuapp.com/users/register", options)
+            .post("https://tasklist-griffith.herokuapp.com/users/logout", body, options)
             .subscribe(res => {
                 const r = res as any
 
                 this.cookieService.set('token', '')
                 this.cookieService.set('id', '')
                 this.cookieService.set('user', '')
-                this.router.navigate(['list'])
+                window.location.reload()
+                this.router.navigate(['login'])
             });
-
     }
 }

@@ -3,6 +3,10 @@
         <h2>{{workspace.name}}</h2>
         <button class="delete-btn" (click)="delWorkspace()">Delete</button>
     </div>
+    <!-- <div class="task" *ngFor="let task of workspace.collaborators>
+        <app-task [task]="task" [workspace]="workspace._id"></app-task>
+    </div> -->
+
     <div class="task" *ngFor="let task of workspace.tasks">
         <app-task [task]="task" [workspace]="workspace._id"></app-task>
     </div>

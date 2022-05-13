@@ -4,7 +4,6 @@
         <button (click)="newWorkspace()" class="check-btn"> New workspace </button>
     </div>
     <div class="workspace-container" *ngFor="let workspace of workspaces">
-        <p>{{workspace.description}}</p>
         <app-workspace [workspace]="workspace"></app-workspace>
     </div>
 </div>
