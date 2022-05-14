@@ -3,12 +3,13 @@
         <input type="checkbox" [(ngModel)]="task.completed" (change)="check()">
     </label>
     <div class="task-content">
-        <div class="task-titel">
-            <span>{{task.priority}}</span>
+        <div class="task-title">
+            <p [ngClass]="task.priority" >{{task.priority}}</p>
             <h3>{{task.name}}</h3>
         </div>
         <p>{{task.description}}</p>
     </div>
+    <button class="small-delete-btn" (click)="deleteTask()">X</button>
 </div>
 <!--
     {

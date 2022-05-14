@@ -47,14 +47,11 @@ export class AppComponent implements OnInit {
         const body = {}
         this.http
             .post("https://tasklist-griffith.herokuapp.com/users/logout", body, options)
-            .subscribe(res => {
-                const r = res as any
-
-                this.cookieService.set('token', '')
-                this.cookieService.set('id', '')
-                this.cookieService.set('user', '')
-                window.location.reload()
-                this.router.navigate(['login'])
-            });
+            .subscribe(res => {});
+        this.cookieService.set('token', '')
+        this.cookieService.set('id', '')
+        this.cookieService.set('user', '')
+        window.location.reload()
+        this.router.navigate(['login'])
     }
 }

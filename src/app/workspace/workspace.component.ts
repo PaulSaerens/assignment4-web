@@ -17,6 +17,7 @@ export class WorkspaceComponent implements OnInit {
     public isHidden: boolean = true;
     public selectedObject = "MEDIUM"
     public selection = ["HIGH", "MEDIUM", "LOW"]
+    public taskDesc: string = ''
 
     private usr: any = []
 
@@ -43,7 +44,7 @@ export class WorkspaceComponent implements OnInit {
         }
         const body = {
             "name": this.newTask,
-            "description": this.newTask,
+            "description": this.taskDesc,
             "assignedTo": [this.cookieService.get('id')],
             "completed": false,
             "priority": this.selectedObject

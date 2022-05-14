@@ -48,8 +48,25 @@ export class TaskComponent implements OnInit {
         this.http
             .post(`https://tasklist-griffith.herokuapp.com/tasks/${this.taskId}/complete`, body, options)
             .subscribe(res => {
-                console.log(res)
+                this.task.completed = true;
             });
-        console.log(`updated to ${this.task.completed}`)
+    }
+
+    deleteTask() {
+        const options = {
+            params: new HttpParams(),
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: this.cookieService.get('token')
+            }),
+        }
+        this.http
+            .delete(
+                `https://tasklist-griffith.herokuapp.com/workspaces/${this.workspace}/deleteTask/${this.taskId}`, options
+            )
+            .subscribe(res => {
+                window.location.reload()
+            });
+
     }
 }
