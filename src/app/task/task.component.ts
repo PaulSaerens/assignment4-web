@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
     selector: 'app-task',
@@ -6,28 +8,48 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-    @Input() task: any;
+    @Input() taskId: any;
     @Input() workspace: any;
 
-    public data:any;
+    public task: any = {}
 
-    constructor() { }
+    constructor(private http: HttpClient, private cookieService: CookieService) { }
 
     ngOnInit(): void {
-        this.data = this.getTask();
+        this.task = this.getTask();
     }
 
     getTask() {
-        return {
-                "name": "3",
-                "description": "3",
-                "assignedTo": ["62755f25d840778792110ab4", "62755f12d840778792110aaf"],
-                "completed": false,
-                "priority": "MEDIUM"
-            }
+        const options = {
+            params: new HttpParams(),
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: this.cookieService.get('token')
+            }),
+        }
+        this.http
+            .get(`https://tasklist-griffith.herokuapp.com/tasks/${this.taskId}`, options)
+            .subscribe(res => {
+                const r = res as any
+                this.task = r.content.task
+                console.log(this.task)
+            });
     }
 
     check() {
-        console.log(`updated to ${this.data.completed}`)
+        const options = {
+            params: new HttpParams(),
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: this.cookieService.get('token')
+            }),
+        }
+        const body = {}
+        this.http
+            .post(`https://tasklist-griffith.herokuapp.com/tasks/${this.taskId}/complete`, body, options)
+            .subscribe(res => {
+                console.log(res)
+            });
+        console.log(`updated to ${this.task.completed}`)
     }
 }

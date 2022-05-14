@@ -37,7 +37,6 @@ export class WorkspaceListComponent implements OnInit {
         this.http
             .post("https://tasklist-griffith.herokuapp.com/workspaces/new", body, options)
             .subscribe(res => {
-                console.log(res)
                 this.getWorkspaces();
             });
         this.newName = '';

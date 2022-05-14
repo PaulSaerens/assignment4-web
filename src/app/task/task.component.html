@@ -1,13 +1,13 @@
-<div  class="task-container">
+<div  class="task-container" *ngIf="task">
     <label>
-        <input type="checkbox" [(ngModel)]="data.completed" (change)="check()">
+        <input type="checkbox" [(ngModel)]="task.completed" (change)="check()">
     </label>
     <div class="task-content">
         <div class="task-titel">
-            <span>{{data.priority}}</span>
-            <h3>{{data.name}}</h3>
+            <span>{{task.priority}}</span>
+            <h3>{{task.name}}</h3>
         </div>
-        <p>{{data.description}}</p>
+        <p>{{task.description}}</p>
     </div>
 </div>
 <!--

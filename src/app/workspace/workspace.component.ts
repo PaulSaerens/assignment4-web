@@ -12,22 +12,50 @@ export class WorkspaceComponent implements OnInit {
     @Input() workspace: any;
 
     public newCollab: string = ''
+    public newTask: string = ''
     public collabs: any = []
-    public isHidden: boolean = false;
+    public isHidden: boolean = true;
+    public selectedObject = "MEDIUM"
+    public selection = ["HIGH", "MEDIUM", "LOW"]
 
     private usr: any = []
 
     constructor(private http: HttpClient, private cookieService: CookieService) { }
 
     ngOnInit(): void {
-        this.isHidden = false
+        this.isHidden = true
         this.getAllUsers()
         this.getUsers()
     }
 
+
     hideCollaborators() {
         this.isHidden = !this.isHidden
     }
+
+    addTask() {
+        const options = {
+            params: new HttpParams(),
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: this.cookieService.get('token')
+            }),
+        }
+        const body = {
+            "name": this.newTask,
+            "description": this.newTask,
+            "assignedTo": [this.cookieService.get('id')],
+            "completed": false,
+            "priority": this.selectedObject
+        }
+        this.http
+            .post(`https://tasklist-griffith.herokuapp.com/workspaces/${this.workspace._id}/newTask`, body, options)
+            .subscribe(res => {
+                this.updateWorkspace()
+            });
+    }
+
+
 
     getAllUsers() {
         const options = {
@@ -105,11 +133,9 @@ export class WorkspaceComponent implements OnInit {
             }),
         }
         for (let col of this.workspace.collaborators) {
-            console.log(col)
             this.http
                 .get(`https://tasklist-griffith.herokuapp.com/users/${col}`, options)
                 .subscribe(res => {
-                    console.log(res)
                     let r = res as any;
                     this.collabs.push({
                         id: r.content.user._id,
@@ -134,7 +160,7 @@ export class WorkspaceComponent implements OnInit {
         this.http
             .delete(`https://tasklist-griffith.herokuapp.com/workspaces/${this.workspace._id}`, options)
             .subscribe(res => {
-                console.log(res)
+                this.updateWorkspace()
             });
     }
 

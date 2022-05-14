@@ -42,13 +42,11 @@ export class LoginComponent implements OnInit {
             .post("https://tasklist-griffith.herokuapp.com/users/login", body, options)
             .subscribe(res => {
                 const r = res as any
-                console.log(r)
                 this.cookieService.set('token', "Bearer " + r.content.user.token)
                 this.cookieService.set('id', r.content.user._id)
                 this.cookieService.set('user', r.content.user.username)
                 this.router.navigate(['list'])
             });
-        console.log("login")
     }
 
     register() {
@@ -64,7 +62,6 @@ export class LoginComponent implements OnInit {
             .post("https://tasklist-griffith.herokuapp.com/users/register", body, options)
             .subscribe(res => {
                 const r = res as any
-                console.log(r)
                 this.cookieService.set('token', "Bearer " + r.content.user.token)
                 this.cookieService.set('id', r.content.user.id)
                 this.cookieService.set('user', r.content.user.username)

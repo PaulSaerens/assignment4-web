@@ -16,8 +16,18 @@
             <button class="small-delete-btn" (click)="delCollab(usr.id)">Delete</button>
         </div>
     </div>
+    <div class="add-task">
+        <input class="new-task" type="text" placeholder="Name of the task" autocomplete="nope" [(ngModel)]="newTask">
+        <label for="priority">Priority</label>
+        <select [(ngModel)]="selectedObject">
+            <option *ngFor="let lang of selection" [ngValue]="lang">
+                {{lang}}
+            </option>
+        </select>
+        <button (click)="addTask()" class="small-check-btn">ADD</button>
+    </div>
 
     <div class="task" *ngFor="let task of workspace.tasks">
-        <app-task [task]="task" [workspace]="workspace._id"></app-task>
+        <app-task [taskId]="task" [workspace]="workspace._id"></app-task>
     </div>
 </div>
