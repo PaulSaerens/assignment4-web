@@ -1,34 +1,36 @@
 <div class="task-container">
-    <div class="workspace-title">
-        <h2>{{workspace.name}}</h2>
-        <button class="delete-btn" (click)="delWorkspace()">Delete</button>
+  <div class="workspace-title">
+    <h2>{{workspace.name}}</h2>
+    <button class="delete-btn" (click)="delWorkspace()">Delete</button>
+  </div>
+  <div class="first-line">
+    <div class="add-collaborator">
+      <input class="new-collab" type="text" placeholder="Name of the collaborator" autocomplete="nope"
+             [(ngModel)]="newCollab">
+      <button (click)="addCollab()" class="small-check-btn"> ADD</button>
     </div>
-    <div class="first-line">
-        <div class="add-collaborator">
-            <input class="new-collab" type="text" placeholder="Name of the collaborator" autocomplete="nope" [(ngModel)]="newCollab">
-            <button (click)="addCollab()" class="small-check-btn"> ADD </button>
-        </div>
-        <button class="gen-btn" (click)="hideCollaborators()">Hide collaborators</button>
+    <button class="gen-btn" (click)="hideCollaborators()">{{this.isHidden ? "Show" : "Hide"}} collaborators</button>
+  </div>
+  <div [hidden]="isHidden">
+    <div class="list-collaborators" *ngFor="let usr of collabs">
+      <p>{{usr.name}}</p>
+      <button class="small-delete-btn" (click)="delCollab(usr.id)">Delete</button>
     </div>
-    <div [hidden]="isHidden">
-        <div class="list-collaborators" *ngFor="let usr of collabs">
-            <p>{{usr.name}}</p>
-            <button class="small-delete-btn" (click)="delCollab(usr.id)">Delete</button>
-        </div>
-    </div>
-    <div class="add-task">
-        <input class="new-task" type="text" placeholder="Name of the task" autocomplete="nope" [(ngModel)]="newTask">
-        <input class="new-task" type="text" placeholder="Description" autocomplete="nope" [(ngModel)]="taskDesc">
-        <label for="priority">Priority</label>
-        <select [(ngModel)]="selectedObject">
-            <option *ngFor="let lang of selection" [ngValue]="lang">
-                {{lang}}
-            </option>
-        </select>
-        <button (click)="addTask()" class="small-check-btn">ADD</button>
-    </div>
+  </div>
+  <div class="add-task">
+    <input required class="new-task" type="text" placeholder="Name of the task" autocomplete="nope"
+           [(ngModel)]="newTask">
+    <input required class="new-task" type="text" placeholder="Description" autocomplete="nope" [(ngModel)]="taskDesc">
+    <label for="priority">Priority</label>
+    <select [(ngModel)]="selectedObject">
+      <option *ngFor="let lang of selection" [ngValue]="lang">
+        {{lang}}
+      </option>
+    </select>
+    <button (click)="addTask()" class="small-check-btn">ADD</button>
+  </div>
 
-    <div class="task" *ngFor="let task of workspace.tasks">
-        <app-task [taskId]="task" [workspace]="workspace._id"></app-task>
-    </div>
+  <div class="task" *ngFor="let task of workspace.tasks">
+    <app-task [taskId]="task" [workspace]="workspace"></app-task>
+  </div>
 </div>
